@@ -3,7 +3,7 @@ import cv2
 import streamlit as st
 from pytube import youtube
 import subprocess
-from langchain_groq import Chatgroq
+from langchain_groq import ChatGroq
 
 
 video_directory = 'videos/'
@@ -65,8 +65,8 @@ video.release()
 def describe_video():
    descriptions = []
   for file in sorted(os.listdir(frames_directory)):
-  frame_path = os.path.join(frames_directory, file)
-  descriptions.append(f"{file}")
+    frame_path = os.path.join(frames_directory, file)
+    descriptions.append(f"{file}")
 prompt = "you are a helpfull assistant. summarize the video based on the following frame filenbame:\n"+"\n".join(descriptions)
 return mode.invoke(prompt)
 
