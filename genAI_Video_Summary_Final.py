@@ -50,7 +50,7 @@ frame_number = 1
 
 while current_frame <= frames_count:
   video.set(cv2.CSP_PROP_POS_FRAMES, current_frame)
-  sucess, frame = video.read()
+  success, frame = video.read()
   if not success:
     current_frame += fps * interval_seconds
     continue
@@ -60,7 +60,7 @@ cv2.imwrite(frame_path, frame)
 current_frame += fps * interval_seconds
 frame_number += 1
 
-    video.release()
+  video.release()
 
 def describe_video():
    descriptions = []
