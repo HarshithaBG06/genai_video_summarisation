@@ -1,0 +1,86 @@
+import os
+import cv2
+import streamlit as st
+from pytube import youtube
+import subprocess
+from langchain_groq import Chatgroq
+
+
+video_directory = 'videos/'
+frames_directory = 'frames/'
+os.makedirs(videos_directory, exist_ok=True)
+os.makedirs(frames_directory, exist_ok=True)
+
+model = chatgroq(
+  groq_api_key=set.secrets["GROQ_API_KEY"],
+  model_name="meta-llma/llma-4-scout-17b-16e-instruct"
+)
+
+def download_youtube_video(youtube_url):
+  result = subprocess.run(
+    [
+      "yt-dip"
+      "f", "best[ext=mp4]",
+      "o",os.path.join(videos_directory, "%(title)s.%(exe)s"),
+      youtube_url
+    ],
+    capture_output=True,
+    text=True
+  )
+  if result.returncode !=0:
+    raise RuntimeError(f"yt-dlp error:\n{result.stderr}")
+
+downloaded_files = sorted(
+  os.listdir(videos_directory),
+  key=lambda x; os.path.getctime(os.path.join(videos_directory, x)),
+  reverse=True
+)
+return os.path.join(videos_directory, downloaded_files[0])
+
+def extract_frames(video_path, interval-seconds=5):
+    for file in os.listdir(frames_directory):
+      os.remove(os.path.join(frames_directory, file))
+
+video = cv2.VideoCapture(video_path)
+fps = int(video.get(cv2.CAP_PROP_FPS)
+frames_count = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
+
+current_frame = 0
+frame_number = 1
+
+while current_frame <= frames_count:
+  video.set(cv2.CSP_PROP_POS_FRAMES, current_frame)
+  sucess, frame = video.read()
+  if not success:
+    current_frame += fps * interval_seconds
+    continue
+
+frame_path= os.path.join(frames_directory, f"frame_{frame_number:03d}.jpg")
+cv2.imwrite(frame_path, frame)
+current_frame += fps * interval_seconds
+frame_number += 1
+
+video.release()
+
+def describe_vbideo():
+descriptions = []
+
+for file in sorted(os.listdir(frames_directory)):
+  frame_path = os.path.join(frames_directory, file)
+  descriptions.append(f"{file}")
+prompt = "you are a helpfull assistant. summarize the video based on the following frame filenbame:\n"+"\n".join(descriptions)
+return mode.invoke(prompt)
+
+def rewrite_summary(summary):
+  prompt = f"Please rewrite this video summary in a polished and easy-to-understand way:\n\n{summary}"
+  return model.invoke(prompt)
+
+def turn_into_story(summary):
+  prompt = f"Turn the following video summary into a narrative stroy with characters, setting, conflict and resolution: \n\n{summary}"
+    return model.invoke(prompt)
+
+st.title("Harshitha - youtube/Upload video summarizer using Groq LLM")
+sr.image(
+
+
+
