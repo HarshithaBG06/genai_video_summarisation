@@ -63,8 +63,8 @@ frame_number += 1
 video.release()
 
 def describe_video():
-descriptions = []
-for file in sorted(os.listdir(frames_directory)):
+   descriptions = []
+  for file in sorted(os.listdir(frames_directory)):
   frame_path = os.path.join(frames_directory, file)
   descriptions.append(f"{file}")
 prompt = "you are a helpfull assistant. summarize the video based on the following frame filenbame:\n"+"\n".join(descriptions)
