@@ -95,3 +95,40 @@ if youtube_url:
 st.markdown("## video summary:")
 st.markdown(summary)
 
+except Exception as e:
+st.error(f" Error: {e}")
+
+st.divider()
+
+uploaded_file = st.file_uploader("Or upload a video file:", type=["mp4", "avi", "mov", "mkv"])
+
+if uploded_file:
+  with st.spinner("Processing uploaded video..."):
+    saved_path = os.path.join(video_directory, uploaded_file.name)
+    with open(saved_path, "wb") as f:
+      f.write(uploaded_file.getbuffer())
+
+extract_frames(saved_path)
+summary = describe_video()
+st.session_state["summary:"] = summary
+
+st.markdown("### summary of uploaded video:")
+st.markkdown(summary)
+
+if "summary" in st.session_state:
+  col1,col2 = st.columns(2)
+
+with col1:
+  if st.button(" Rewrite Summary Nicely"):
+    with st.spinner("Rewriting Summary..."):
+      rewritten = rewrite_summary(st.session_state["summary"])
+      st.markdown("### Rewritten Summary:")
+      st.markdown(rewritten)
+
+with col2:
+  if st.button(" Create Story from summary"):
+    with st.spinner("creating story..."):
+      story = turn_into_story(st.session_state["summary"])
+      st.markdown("### Cinematic Story:")
+      st.markdown(story)
+
