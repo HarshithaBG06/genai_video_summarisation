@@ -42,7 +42,7 @@ def extract_frames(video_path, interval_seconds=5):
       os.remove(os.path.join(frames_directory, file))
 
 video = cv2.VideoCapture(video_path)
-fps = int(video.get(cv2.CAP_PROP_FPS)
+fps = int(video.get(cv2.CAP_PROP_FPS))
 frames_count = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
 
 current_frame = 0
