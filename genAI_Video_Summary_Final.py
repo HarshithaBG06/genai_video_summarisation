@@ -76,7 +76,7 @@ def rewrite_summary(summary):
 
 def turn_into_story(summary):
   prompt = f"Turn the following video summary into a narrative stroy with characters, setting, conflict and resolution: \n\n{summary}"
-    return model.invoke(prompt)
+  return model.invoke(prompt)
 
 st.title("Harshitha - youtube/Upload video summarizer using Groq LLM")
 st.image("butterfly.png")
