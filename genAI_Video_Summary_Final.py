@@ -62,8 +62,6 @@ frame_number += 1
 
     video.release()
 
-
-
 def describe_video():
    descriptions = []
 for file in sorted(os.listdir(frames_directory)):
