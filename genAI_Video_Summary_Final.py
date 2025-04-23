@@ -60,7 +60,7 @@ cv2.imwrite(frame_path, frame)
 current_frame += fps * interval_seconds
 frame_number += 1
 
-  video.release()
+video.release()
 
 def describe_video():
    descriptions = []
