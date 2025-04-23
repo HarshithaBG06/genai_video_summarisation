@@ -64,11 +64,11 @@ video.release()
 
 def describe_video():
    descriptions = []
-for file in sorted(os.listdir(frames_directory)):
+  for file in sorted(os.listdir(frames_directory)):
     frame_path = os.path.join(frames_directory, file)
     descriptions.append(f"{file}")
-prompt = "you are a helpfull assistant. summarize the video based on the following frame filenbame:\n"+"\n".join(descriptions)
-return mode.invoke(prompt)
+  prompt = "you are a helpfull assistant. summarize the video based on the following frame filenbame:\n"+"\n".join(descriptions)
+  return mode.invoke(prompt)
 
 def rewrite_summary(summary):
   prompt = f"Please rewrite this video summary in a polished and easy-to-understand way:\n\n{summary}"
