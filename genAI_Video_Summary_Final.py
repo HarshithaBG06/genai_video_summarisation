@@ -30,7 +30,7 @@ def download_youtube_video(youtube_url):
   if result.returncode !=0:
     raise RuntimeError(f"yt-dlp error:\n{result.stderr}")
 
- downloaded_files = sorted(
+  downloaded_files = sorted(
     os.listdir(videos_directory),
     key = lambda x: os.path.getctime(os.path.join(videos_directory, x)),
     reverse=True
