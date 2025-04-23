@@ -80,7 +80,18 @@ def turn_into_story(summary):
     return model.invoke(prompt)
 
 st.title("Harshitha - youtube/Upload video summarizer using Groq LLM")
-sr.image(
+st.image("butterfly.png")
 
+youtube_url = st.txt_input("paste a youtubr video URL:", placeholder="https://www.youtube.com/watch?v=example")
 
+if youtube_url:
+  try:
+    with st.spinner("Downloading and summarizing video..."):
+      video_path = download_youtube_video(youtube_url)
+      extract_frames(video_path)
+      summary = describe_video()
+      st.session_state["summary"]=summary
+
+st.markdown("## video summary:")
+st.markdown(summary)
 
