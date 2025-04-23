@@ -11,7 +11,7 @@ frames_directory = 'frames/'
 os.makedirs(videos_directory, exist_ok=True)
 os.makedirs(frames_directory, exist_ok=True)
 
-model = chatgroq(
+model = chatGroq(
   groq_api_key=set.secrets["GROQ_API_KEY"],
   model_name="meta-llma/llma-4-scout-17b-16e-instruct"
 )
@@ -60,11 +60,13 @@ cv2.imwrite(frame_path, frame)
 current_frame += fps * interval_seconds
 frame_number += 1
 
-video.release()
+    video.release()
+
+
 
 def describe_video():
    descriptions = []
-  for file in sorted(os.listdir(frames_directory)):
+for file in sorted(os.listdir(frames_directory)):
     frame_path = os.path.join(frames_directory, file)
     descriptions.append(f"{file}")
 prompt = "you are a helpfull assistant. summarize the video based on the following frame filenbame:\n"+"\n".join(descriptions)
