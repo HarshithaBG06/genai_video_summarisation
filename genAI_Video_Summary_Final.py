@@ -37,7 +37,7 @@ downloaded_files = sorted(
 )
 return os.path.join(videos_directory, downloaded_files[0])
 
-def extract_frames(video_path, interval-seconds=5):
+def extract_frames(video_path, interval_seconds=5):
     for file in os.listdir(frames_directory):
       os.remove(os.path.join(frames_directory, file))
 
