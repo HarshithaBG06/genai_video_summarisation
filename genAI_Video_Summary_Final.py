@@ -62,9 +62,8 @@ frame_number += 1
 
 video.release()
 
-def describe_vbideo():
+def describe_video():
 descriptions = []
-
 for file in sorted(os.listdir(frames_directory)):
   frame_path = os.path.join(frames_directory, file)
   descriptions.append(f"{file}")
