@@ -35,7 +35,7 @@ def download_youtube_video(youtube_url):
     key = lambda x: os.path.getctime(os.path.join(videos_directory, x)),
     reverse=True
   )
- return os.path.join(videos_directory, downloaded_files[0])
+  return os.path.join(videos_directory, downloaded_files[0])
 
 def extract_frames(video_path, interval_seconds=5):
     for file in os.listdir(frames_directory):
