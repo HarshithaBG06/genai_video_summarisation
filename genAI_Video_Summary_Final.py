@@ -12,7 +12,7 @@ os.makedirs(frames_directory, exist_ok=True)
 
 model = ChatGroq(
     groq_api_key=st.secrets["GROQ_API_KEY"],
-    model_name="meta-llma/llma-4-scout-17b-16e-instruct"
+    model_name="meta-llama/llama-4-scout-17b-16e-instruct"
 )
 
 def download_youtube_video(youtube_url):
